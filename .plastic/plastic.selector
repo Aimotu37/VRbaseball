@@ -1,0 +1,4 @@
+repository "baseball@tj_soobingjy@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

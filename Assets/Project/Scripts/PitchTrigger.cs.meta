@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: DHJNsXusBXLvwMzObWwlOQzSKICp6KslLF4fz+WCBbUufvSGKhF3/8s=
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pitcherAnimator: {instanceID: 0}
+  - inputActions: {fileID: -944628639613478452, guid: 0b3133a1cc0220840b5138ebb8a33514, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

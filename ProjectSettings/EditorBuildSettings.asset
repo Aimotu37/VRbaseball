@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Project/Scenes/BattingScene.unity.scene
+    guid: d4778fee718cd7e4eb743b92e422728b
+  - enabled: 0
+    path: Assets/Samples/OpenXR Plugin/1.14.3/Controller/ControllerSample.unity
+    guid: edb91e86bd8b7dc4ca40ad6c3167de73
+  - enabled: 0
+    path: Assets/Project/Scenes/MainMenu.unity.scene
+    guid: 806065b27eacba64792dcb225e136ebd
+  - enabled: 1
+    path: Assets/Project/Scenes/MainScene.scene
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_BuildProfiles: []
+  m_configObjects:
+    Unity.XR.PICO.LivePreview.Settings: {fileID: 11400000, guid: eca47cfdc5051a645830da999de8ac02, type: 2}
+    Unity.XR.PXR.Settings: {fileID: 11400000, guid: 44a9a704a4452d44399324b49201eb5e, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: eb0b464162b31fb4193536158eea9981, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 23ff280969b87d441b7c80b92a7b54de, type: 2}
+  m_SlimFeaturesWeixinMiniGame:
+    AllocateOverhead: 1
+    DecompressASTC: 0
+    DecompressDXT: 1
+    DecompressETC: 1
+    FreeTypeSfntPng: 1
+    LightProbe: 2
+    UseStringInternPool: 2

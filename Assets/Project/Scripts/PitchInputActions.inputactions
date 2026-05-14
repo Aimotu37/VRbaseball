@@ -1,0 +1,87 @@
+{
+    "name": "PitchInputActions",
+    "maps": [
+        {
+            "name": "PitchControls",
+            "id": "399327ad-631a-4d58-a395-c291d33cfa91",
+            "actions": [
+                {
+                    "name": "VRPitch",
+                    "type": "Button",
+                    "id": "55abfd04-90d4-4047-8303-fec7debfded4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DebugPitch",
+                    "type": "Button",
+                    "id": "e44683af-866c-4e39-a718-a0f2c617adaf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dbb4540f-ae9d-4643-9bfb-af6c6ee7739d",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VRPitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81e8783a-e7ad-4b42-b7b0-b5c842cf40e0",
+                    "path": "<XRController>{LeftHand}/{Back}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VRPitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "898bf11a-1a22-44bd-8fe0-14da8adb0128",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugPitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "VR",
+            "bindingGroup": "VR",
+            "devices": [
+                {
+                    "devicePath": "<PICO4TouchController>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
