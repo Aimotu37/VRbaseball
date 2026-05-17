@@ -46,7 +46,7 @@ public class VRBatHitController : MonoBehaviour
     // InputSystem动作引用
     private InputAction _triggerAction;       // 扳机键动作（释放棒球棒跟随）
     private InputAction _gripAction;          // 握把键动作（重置棒球棒）
-    private InputAction _buttonBAction;       // B键动作（蓄力）
+    //private InputAction _buttonBAction;       // B键动作（蓄力）
     private InputActionMap _baseballActionMap;// 棒球控制动作映射
 
     // 触觉反馈组件
@@ -77,7 +77,7 @@ public class VRBatHitController : MonoBehaviour
         // 启用输入动作
         _triggerAction?.Enable();
         _gripAction?.Enable();
-        _buttonBAction?.Enable();
+       // _buttonBAction?.Enable();
     }
 
     private void OnDisable()
@@ -85,7 +85,7 @@ public class VRBatHitController : MonoBehaviour
         // 禁用输入动作
         _triggerAction?.Disable();
         _gripAction?.Disable();
-        _buttonBAction?.Disable();
+        //_buttonBAction?.Disable();
     }
 
     private void FixedUpdate()
@@ -173,22 +173,24 @@ public class VRBatHitController : MonoBehaviour
         // 绑定输入动作
         _triggerAction = _baseballActionMap.FindAction("Trigger");
         _gripAction = _baseballActionMap.FindAction("Grip");
-        _buttonBAction = _baseballActionMap.FindAction("ButtonB");
+        //_buttonBAction = _baseballActionMap.FindAction("ButtonB");
 
         // 检测必要动作是否存在
-        if (_triggerAction == null || _gripAction == null || _buttonBAction == null)
+        if (_triggerAction == null || _gripAction == null)
         {
-            Debug.LogError("[棒球棒控制器] 未找到Trigger/Grip/ButtonB Action！");
+            Debug.LogError("[棒球棒控制器] 未找到Trigger/Grip！");
             return;
         }
 
         // 绑定输入事件
         _triggerAction.performed += OnTriggerPressed;
+        _triggerAction.canceled += OnTriggerReleased;
         _gripAction.performed += OnGripPressed;
-        _buttonBAction.started += OnButtonBStart;
-        _buttonBAction.canceled += OnButtonBRelease;
+        //_buttonBAction.started += OnButtonBStart;
+        //_buttonBAction.canceled += OnButtonBRelease;
 
         Debug.Log("[棒球棒控制器] 按键监听初始化成功，等待输入...");
+        Debug.Log("[棒球棒控制器] Trigger/Grip 绑定成功，等待输入...");
     }
     #endregion
 
@@ -201,6 +203,8 @@ public class VRBatHitController : MonoBehaviour
         if (!_isBatReset) return;
 
         _isBatReset = false;
+        _isCharging = true;           // 开始蓄力
+        _currentChargeTime = 0f;
         Debug.Log($"[棒球棒控制器] Trigger按下，解除跟随状态 | 当前蓄力时间：{_currentChargeTime:F2}s");
     }
 
@@ -209,6 +213,10 @@ public class VRBatHitController : MonoBehaviour
     /// </summary>
     private void OnGripPressed(InputAction.CallbackContext context)
     {
+        if (!_isBatReset) return;
+        // 只有未挥棒时才允许重置
+        // 避免挥棒过程中按下握柄键会强制重置棒球棒位置，严重影响击球体验。
+
         _isBatReset = true;
         _currentChargeTime = 0f;
         _isCharging = false;
@@ -219,7 +227,7 @@ public class VRBatHitController : MonoBehaviour
     /// <summary>
     /// B键按下事件（开始蓄力）
     /// </summary>
-    private void OnButtonBStart(InputAction.CallbackContext context)
+    /*private void OnButtonBStart(InputAction.CallbackContext context)
     {
         if (!_isBatReset) return;
 
@@ -236,6 +244,14 @@ public class VRBatHitController : MonoBehaviour
         _isCharging = false;
         _hapticFeedback?.StopChargeVibration();
         Debug.Log($"[棒球棒控制器] B键释放，蓄力总时长：{_currentChargeTime:F2}s");
+    }*/
+
+    private void OnTriggerReleased(InputAction.CallbackContext context)
+    {
+        if (!_isCharging) return;
+        _isCharging = false;
+        _hapticFeedback?.StopChargeVibration();
+        Debug.Log($"[棒球棒控制器] Trigger释放，蓄力总时长：{_currentChargeTime:F2}s");
     }
     #endregion
 
@@ -363,15 +379,15 @@ public class VRBatHitController : MonoBehaviour
         if (_triggerAction != null) _triggerAction.performed -= OnTriggerPressed;
         if (_gripAction != null) _gripAction.performed -= OnGripPressed;
 
-        if (_buttonBAction != null)
+        /*if (_buttonBAction != null)
         {
             _buttonBAction.started -= OnButtonBStart;
             _buttonBAction.canceled -= OnButtonBRelease;
-        }
+        }*/
 
         _triggerAction?.Dispose();
         _gripAction?.Dispose();
-        _buttonBAction?.Dispose();
+       // _buttonBAction?.Dispose();
     }
     #endregion
 }
