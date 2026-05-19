@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         TryExecuteModuleAction(() => _vrPlayerMovement?.SetMovementActive(false), nameof(_vrPlayerMovement));
         TryExecuteModuleAction(() => _baseRunningController?.ResetRunningState(), nameof(_baseRunningController));
         TryExecuteModuleAction(() => _defenseAIController?.ResetDefense(), nameof(_defenseAIController));
-        TryExecuteModuleAction(() => _autoPitcher?.OnPitchCompleted(), nameof(_autoPitcher));
+      
     }
 
     /// <summary>

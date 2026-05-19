@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 187224458445585884}
-  - component: {fileID: 8251463588432499113}
   m_Layer: 0
   m_HasEditorInfo: 1
   m_Name: GameManager
@@ -33,18 +32,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8251463588432499113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7464686383403646924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d253f655584ac0e4c87c42046cfd4c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  humanPitcherPrefab: {fileID: 1253289560839082718, guid: 87d9e9603bb89cf40bb096b362ddb56d, type: 3}
-  alienPitcherPrefab: {fileID: 1775885503516575369, guid: 854f54f532d158a4f87c1a8d6e006069, type: 3}
-  pitcherSpawnPoint: {fileID: 0}

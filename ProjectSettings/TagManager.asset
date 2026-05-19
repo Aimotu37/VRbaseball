@@ -7,6 +7,9 @@ TagManager:
   - Baseball
   - Bat
   - Ground
+  - Model
+  - Manager
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -16,10 +19,10 @@ TagManager:
   - UI
   - Ground
   - Baseball
-  - Glove
-  - PlayerBat
-  - Interactive
+  - Player
+  - Model
   - Bat
+  - Manager
   - 
   - 
   - 

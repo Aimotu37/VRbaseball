@@ -28,7 +28,7 @@
                 {
                     "name": "",
                     "id": "dbb4540f-ae9d-4643-9bfb-af6c6ee7739d",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -51,6 +51,17 @@
                     "name": "",
                     "id": "898bf11a-1a22-44bd-8fe0-14da8adb0128",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugPitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08bfc8c5-26ed-4d7f-9a73-774fcfa4227d",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
