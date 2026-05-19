@@ -18,24 +18,16 @@ public class VRBatHitController : MonoBehaviour
     public Vector3 holdPositionOffset = new Vector3(0.2f, 0.5f, 0.3f);
     public Vector3 holdRotationOffset = new Vector3(0, -90, 0);
 
-<<<<<<< HEAD
     private Rigidbody _batRigidbody;
     private Vector3 _lastFramePosition;
     private float _swingSpeed;
     private float _currentChargeTime = 0f;
     private bool _isCharging = false;
     private bool _isBatReset = true;
-=======
-    // InputSystem动作引用
-    private InputAction _triggerAction;       // 扳机键动作（释放棒球棒跟随）
-    private InputAction _gripAction;          // 握把键动作（重置棒球棒）
-    //private InputAction _buttonBAction;       // B键动作（蓄力）
-    private InputActionMap _baseballActionMap;// 棒球控制动作映射
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
 
+    // InputSystem动作引用
     private InputAction _triggerAction;
     private InputAction _gripAction;
-    private InputAction _buttonBAction;
     private InputActionMap _baseballActionMap;
     private BatHapticFeedback _hapticFeedback;
 
@@ -52,14 +44,12 @@ public class VRBatHitController : MonoBehaviour
     {
         _triggerAction?.Enable();
         _gripAction?.Enable();
-       // _buttonBAction?.Enable();
     }
 
     private void OnDisable()
     {
         _triggerAction?.Disable();
         _gripAction?.Disable();
-        //_buttonBAction?.Disable();
     }
 
     private void FixedUpdate()
@@ -121,14 +111,9 @@ public class VRBatHitController : MonoBehaviour
         }
         _triggerAction = _baseballActionMap.FindAction("Trigger");
         _gripAction = _baseballActionMap.FindAction("Grip");
-        //_buttonBAction = _baseballActionMap.FindAction("ButtonB");
 
-<<<<<<< HEAD
-        if (_triggerAction == null || _gripAction == null || _buttonBAction == null)
-=======
         // 检测必要动作是否存在
         if (_triggerAction == null || _gripAction == null)
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
         {
             Debug.LogError("[棒球棒控制器] 未找到Trigger/Grip！");
             return;
@@ -137,65 +122,27 @@ public class VRBatHitController : MonoBehaviour
         _triggerAction.performed += OnTriggerPressed;
         _triggerAction.canceled += OnTriggerReleased;
         _gripAction.performed += OnGripPressed;
-<<<<<<< HEAD
-        _buttonBAction.started += OnButtonBStart;
-        _buttonBAction.canceled += OnButtonBRelease;
-        Debug.Log("[棒球棒控制器] 按键监听初始化成功");
-=======
-        //_buttonBAction.started += OnButtonBStart;
-        //_buttonBAction.canceled += OnButtonBRelease;
 
         Debug.Log("[棒球棒控制器] 按键监听初始化成功，等待输入...");
-        Debug.Log("[棒球棒控制器] Trigger/Grip 绑定成功，等待输入...");
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
     }
 
     private void OnTriggerPressed(InputAction.CallbackContext context)
     {
         if (!_isBatReset) return;
         _isBatReset = false;
-<<<<<<< HEAD
-=======
-        _isCharging = true;           // 开始蓄力
+        _isCharging = true;
         _currentChargeTime = 0f;
         Debug.Log($"[棒球棒控制器] Trigger按下，解除跟随状态 | 当前蓄力时间：{_currentChargeTime:F2}s");
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
     }
 
     private void OnGripPressed(InputAction.CallbackContext context)
     {
         if (!_isBatReset) return;
-        // 只有未挥棒时才允许重置
-        // 避免挥棒过程中按下握柄键会强制重置棒球棒位置，严重影响击球体验。
-
         _isBatReset = true;
         _currentChargeTime = 0f;
         _isCharging = false;
         _hapticFeedback?.StopChargeVibration();
     }
-
-<<<<<<< HEAD
-    private void OnButtonBStart(InputAction.CallbackContext context)
-=======
-    /// <summary>
-    /// B键按下事件（开始蓄力）
-    /// </summary>
-    /*private void OnButtonBStart(InputAction.CallbackContext context)
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
-    {
-        if (!_isBatReset) return;
-        _isCharging = true;
-        _currentChargeTime = 0f;
-    }
-
-    private void OnButtonBRelease(InputAction.CallbackContext context)
-    {
-        _isCharging = false;
-        _hapticFeedback?.StopChargeVibration();
-<<<<<<< HEAD
-=======
-        Debug.Log($"[棒球棒控制器] B键释放，蓄力总时长：{_currentChargeTime:F2}s");
-    }*/
 
     private void OnTriggerReleased(InputAction.CallbackContext context)
     {
@@ -203,7 +150,6 @@ public class VRBatHitController : MonoBehaviour
         _isCharging = false;
         _hapticFeedback?.StopChargeVibration();
         Debug.Log($"[棒球棒控制器] Trigger释放，蓄力总时长：{_currentChargeTime:F2}s");
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
     }
 
     private void UpdateBatTransform()
@@ -252,7 +198,7 @@ public class VRBatHitController : MonoBehaviour
 
         if (baseballCtrl == null || baseballRb == null || baseballCtrl.hasBeenHit) return;
 
-        // ★ 核心修复：出生无敌期直接忽略，防止误触
+        // 出生无敌期直接忽略，防止误触
         if (Time.time - baseballCtrl.spawnTime < 0.3f)
         {
             Debug.Log("[VRBat] 球处于无敌期，忽略触发器击打");
@@ -295,23 +241,8 @@ public class VRBatHitController : MonoBehaviour
     {
         if (_triggerAction != null) _triggerAction.performed -= OnTriggerPressed;
         if (_gripAction != null) _gripAction.performed -= OnGripPressed;
-<<<<<<< HEAD
-        if (_buttonBAction != null)
-        {
-            _buttonBAction.started -= OnButtonBStart;
-            _buttonBAction.canceled -= OnButtonBRelease;
-        }
-=======
 
-        /*if (_buttonBAction != null)
-        {
-            _buttonBAction.started -= OnButtonBStart;
-            _buttonBAction.canceled -= OnButtonBRelease;
-        }*/
-
->>>>>>> c2df5ca1cc34e8fdd8e309d99155d4a0695d1736
         _triggerAction?.Dispose();
         _gripAction?.Dispose();
-       // _buttonBAction?.Dispose();
     }
 }
